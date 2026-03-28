@@ -1,0 +1,148 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+@theme {
+  --color-dark-bg: var(--bg-dark);
+  --color-dark-card: var(--bg-card);
+  --color-dark-column: var(--bg-column);
+  
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  
+  --color-accent-indigo: var(--accent-indigo);
+  --color-accent-purple: var(--accent-purple);
+  
+  --color-priority-high: var(--priority-high);
+  --color-priority-medium: var(--priority-medium);
+  --color-priority-low: var(--priority-low);
+
+  --shadow-glow: 0 0 20px var(--border-glow);
+  --shadow-premium: var(--shadow-premium);
+}
+
+:root {
+  --bg-dark: #F8FAFC;
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --bg-column: rgba(241, 245, 249, 0.6);
+  
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  
+  --accent-indigo: #4F46E5;
+  --accent-purple: #7C3AED;
+  --accent-glow: rgba(79, 70, 229, 0.15);
+  
+  --priority-high: #EF4444;
+  --priority-medium: #F59E0B;
+  --priority-low: #10B981;
+  
+  --border-color: rgba(203, 213, 225, 0.5);
+  --border-glow: rgba(79, 70, 229, 0.1);
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  --transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+}
+
+.dark {
+  --bg-dark: #0D1117;
+  --bg-card: rgba(22, 27, 34, 0.7);
+  --bg-column: rgba(13, 17, 23, 0.5);
+  
+  --text-primary: #F0F6FC;
+  --text-secondary: #8B949E;
+  --text-muted: #6E7681;
+  
+  --accent-indigo: #6366F1;
+  --accent-purple: #A855F7;
+  --accent-glow: rgba(99, 102, 241, 0.3);
+  
+  --priority-high: #F87171;
+  --priority-medium: #FBBF24;
+  --priority-low: #34D399;
+  
+  --border-color: rgba(240, 246, 252, 0.1);
+  --border-glow: rgba(99, 102, 241, 0.2);
+  
+  --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+@layer base {
+  body {
+    @apply antialiased text-slate-900 dark:text-white bg-slate-50 dark:bg-dark-bg transition-colors duration-500;
+    font-family: 'Inter', 'Poppins', sans-serif;
+    background: radial-gradient(circle at top left, #f1f5f9, #f8fafc 40%),
+                radial-gradient(circle at bottom right, #e2e8f0, #f8fafc 40%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  .dark body {
+    background: radial-gradient(circle at top left, #1e1b4b, #0d1117 40%),
+                radial-gradient(circle at bottom right, #4c1d95, #0d1117 40%);
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 dark:bg-dark-card backdrop-blur-md border border-black/5 dark:border-white/10 shadow-sm dark:shadow-premium;
+  }
+
+  .glass-hover {
+    @apply transition-all duration-300;
+  }
+
+  .glass-hover:hover {
+    @apply border-accent-indigo/30 shadow-glow;
+  }
+
+  .btn-primary {
+    @apply bg-accent-indigo text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-accent-indigo/20 hover:shadow-accent-indigo/40 hover:scale-[1.02] transition-all active:scale-95 cursor-pointer;
+  }
+
+  .input-field {
+    @apply bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-4 focus:ring-accent-indigo/10 focus:border-accent-indigo transition-all w-full;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-black/10 dark:bg-white/10 rounded-full hover:bg-black/20 dark:hover:bg-white/20 transition-colors;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.kanban-container {
+  @apply max-w-[1400px] mx-auto px-4 md:px-8 w-full;
+}
+
