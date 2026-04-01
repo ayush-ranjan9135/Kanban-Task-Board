@@ -266,6 +266,8 @@ function App() {
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
         onClearAll={clearTasks}
+        allTasks={allTasks}
+        columns={columns}
       />
       
       {/* Background patterns */}

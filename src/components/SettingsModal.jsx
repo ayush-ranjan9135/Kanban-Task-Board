@@ -1,8 +1,8 @@
-import React from 'react';
-import { X, Trash2, AlertTriangle, RefreshCw } from 'lucide-react';
+import { X, Trash2, AlertTriangle, RefreshCw, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { generatePDFReport } from '../utils/report-generator';
 
-const SettingsModal = ({ isOpen, onClose, onClearAll }) => {
+const SettingsModal = ({ isOpen, onClose, onClearAll, allTasks = [], columns = [] }) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -60,6 +60,23 @@ const SettingsModal = ({ isOpen, onClose, onClearAll }) => {
                   >
                     <Trash2 size={14} />
                     Clear All Tasks
+                  </button>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 flex flex-col gap-3">
+                  <div className="flex items-center gap-3 text-text-primary">
+                    <FileText size={18} />
+                    <h3 className="text-sm font-bold">Reports</h3>
+                  </div>
+                  <p className="text-xs text-text-secondary font-medium">
+                    Generate a professional PDF report of the current board status.
+                  </p>
+                  <button
+                    onClick={() => generatePDFReport(allTasks, columns)}
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-accent-indigo text-white text-xs font-bold shadow-lg shadow-accent-indigo/20 hover:shadow-accent-indigo/40 hover:scale-[1.02] transition-all active:scale-95"
+                  >
+                    <FileText size={14} />
+                    Download PDF Report
                   </button>
                 </div>
 
